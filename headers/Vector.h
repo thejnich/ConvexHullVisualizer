@@ -28,11 +28,13 @@ public:
 	Vector operator- (Vector v);
 	Vector operator* (float s);
 	Vector operator/ (float s);
+	bool operator== (Vector v);
+
+	static Vector crossProduct (Vector v1, Vector v2);
+	static float getAngle (Vector v1, Vector v2);
+	static float getDistance (Vector v1, Vector v2);
+
 	float norm();
 };
-
-Vector crossProduct (Vector v1, Vector v2);
-float getAngle (Vector v1, Vector v2);
-float getDistance (Vector v1, Vector v2);
 
 #endif /* VECTOR_H */

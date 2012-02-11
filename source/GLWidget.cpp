@@ -163,12 +163,12 @@ int GLWidget::findPoint(Vector v)
 
 	// Find the point closest
 	int index = 0;
-	float smallestDistance = getDistance(v, (*points)[index]);
+	float smallestDistance = Vector::getDistance(v, (*points)[index]);
 	float dist;
 	// loop through all points, tracking which is closest
 	for (uint i = 1; i < points->size(); i++)
 	{
-		dist = getDistance(v, (*points)[i]);
+		dist = Vector::getDistance(v, (*points)[i]);
 		if (dist < smallestDistance)
 		{
 			index = i;
@@ -190,7 +190,10 @@ void GLWidget::updateConvexHull()
 
 	if(!ConvexHullAlgs::GrahamsScan(convexHull, points))
 		printf("error computing convex hull\n");
-
+	printf("convexhull: %d\n", convexHull->size());
+	for(vector<Vector>::iterator it = convexHull->begin(); it!=convexHull->end(); ++it) {
+			printf("%f, %f, %f\n", it->x, it->y, it->z);
+	}
 }
 
 void GLWidget::clearPoints()
