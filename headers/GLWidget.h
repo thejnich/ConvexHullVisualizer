@@ -31,6 +31,8 @@ public:
 	QSize minimumSizeHint() const;
 	
 public slots:
+	void clearPoints();
+	void toggleConvexHull(bool);
 
 signals:
 

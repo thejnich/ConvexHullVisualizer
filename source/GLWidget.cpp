@@ -187,3 +187,15 @@ void GLWidget::updateConvexHull()
 {
 	convexHull = points;	
 }
+	
+void GLWidget::clearPoints()
+{
+	points->clear();
+	convexHull->clear();
+}
+
+void GLWidget::toggleConvexHull(bool show)
+{
+	showConvexHull = show;
+}
+

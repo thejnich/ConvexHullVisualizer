@@ -24,6 +24,10 @@ private:
 	QWidget *centralWidget;
 	GLWidget *glWidget;
 	QHBoxLayout *mainLayout;
+	QVBoxLayout *controlLayout;
+
+	QPushButton *clearPointsButton;
+	QPushButton *toggleConvexHullButton;
 };
 
 #endif /* _WINDOW_H */
