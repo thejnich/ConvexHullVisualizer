@@ -10,10 +10,12 @@
 
 #include <QtOpenGL>
 #include <vector>
+#include "Vector.h"
 
 #define WIDGET_HEIGHT 800
 #define WIDGET_WIDTH 1200
 #define REFRESH_RATE 1
+#define MAX_DIST 0.1
 
 using namespace std;
 using std::vector;
@@ -41,7 +43,11 @@ protected:
 	
 private:
 	QTimer *timer;
-
+	vector<Vector> *points;
+	vector<Vector> *convexHull;
+	bool showConvexHull;
+	int findPoint(Vector v);
+	void updateConvexHull();
 };
 
 #endif  /* _GLWIDGET_H */
