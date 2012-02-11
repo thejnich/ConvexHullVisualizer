@@ -190,10 +190,6 @@ void GLWidget::updateConvexHull()
 
 	if(!ConvexHullAlgs::GrahamsScan(convexHull, points))
 		printf("error computing convex hull\n");
-	printf("convexhull: %d\n", convexHull->size());
-	for(vector<Vector>::iterator it = convexHull->begin(); it!=convexHull->end(); ++it) {
-			printf("%f, %f, %f\n", it->x, it->y, it->z);
-	}
 }
 
 void GLWidget::clearPoints()

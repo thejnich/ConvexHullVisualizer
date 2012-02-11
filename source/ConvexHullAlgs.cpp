@@ -51,9 +51,6 @@ bool ConvexHullAlgs::GrahamsScan(std::vector<Vector> *convexHull, std::vector<Ve
 	}
 
 	std::sort(polars.begin(), polars.end(), compareVectorPolar);
-	for(std::vector<VectorPolar>::iterator it = polars.begin(); it!=polars.end(); ++it) {
-		printf("%f\n", it->angle);
-	}
 
 	convexHull->push_back(*min);
 	convexHull->push_back(polars[0].v);
@@ -62,15 +59,15 @@ bool ConvexHullAlgs::GrahamsScan(std::vector<Vector> *convexHull, std::vector<Ve
 	for(int i = 2; i<polars.size(); ++i) {
 		while(true) {
 			// determine if angle between next-to-top(s), top(s) and pi makes left turn
-			Vector a = convexHull->back() - *(&(convexHull->back())-1); // top - next-to-top = vector from next-to-top to top
-			Vector b = polars[i].v - convexHull->back(); // pi-top = vector from top to pi
+			Vector a = convexHull->back() - convexHull->at(convexHull->size()-2); // top - next-to-top = vector from next-to-top to top
+			Vector b = polars[i].v - convexHull->back(); // p_i-top = vector from top to p_i
 			Vector normal = Vector::crossProduct(a,b); // a X b, cross product
 			if(normal.z > 0) // left turn
 				break;
 			// non left turn
 			convexHull->pop_back();
 		}
-		convexHull->push_back(polars[i].v); // push pi
+		convexHull->push_back(polars[i].v); // push p_i
 	}
 
 	return true;
