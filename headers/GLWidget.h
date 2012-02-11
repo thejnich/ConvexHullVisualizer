@@ -11,6 +11,7 @@
 #include <QtOpenGL>
 #include <vector>
 #include "Vector.h"
+#include "ConvexHullAlgs.h"
 
 #define WIDGET_HEIGHT 800
 #define WIDGET_WIDTH 1200
