@@ -67,7 +67,7 @@ float Vector::norm()
 	return sqrt(x*x + y*y + z*z);
 }
 
-// returns the angle in radians between two vectors, v1 and v2
+// returns the angle in radians between two vectors, v1 and v2 
 float Vector::getAngle (Vector v1, Vector v2)
 {
 	return acos((v1.x*v2.x + v1.y*v2.y + v1.z*v2.z)/(v1.norm()*v2.norm()));

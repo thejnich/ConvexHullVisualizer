@@ -6,6 +6,7 @@ GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 	points = new vector<Vector>;
 	convexHull = new vector<Vector>;
 	showConvexHull = true;
+	initPoints();
 	timer = new QTimer(this);
 	connect(timer, SIGNAL(timeout()), this, SLOT(updateGL()));
 	timer->start(REFRESH_RATE);
@@ -94,6 +95,14 @@ void GLWidget::paintGL()
 		}
 		glEnd();
 	}
+
+	glColor3f(1.f,1.f,1.f);
+	glBegin(GL_LINES);
+	glVertex3f(0.f,1.f,0.f);
+	glVertex3f(0.f,-1.f,0.f);
+	glVertex3f(-1.f,0.f,0.f);
+	glVertex3f(1.f,0.f,0.f);
+	glEnd();
 
 	glFlush();
 }
@@ -203,3 +212,9 @@ void GLWidget::toggleConvexHull(bool show)
 	showConvexHull = show;
 }
 
+void GLWidget::initPoints() {
+	points->push_back(Vector(0.f,0.5f,0.f,1.f));
+	points->push_back(Vector(-.5f,0.f,0.f,1.f));
+	points->push_back(Vector(0.5f,0.f,0.f,1.f));
+	updateConvexHull();
+}

@@ -3,9 +3,9 @@
 struct VectorPolar {
 	Vector v;
 	float angle;
-	VectorPolar(Vector vec, Vector ref) {
+	VectorPolar(Vector vec, Vector min) {
 		v = vec;
-		angle = Vector::getAngle(ref, vec);	
+		angle = Vector::getAngle(Vector(1.f,0.f,0.f,0.f), vec-min);	
 	}
 };
 
@@ -23,7 +23,7 @@ bool ConvexHullAlgs::GrahamsScan(std::vector<Vector> *convexHull, std::vector<Ve
 
 	if( points->size() <= 3 ) {
 		//copy points into convexHull
-		for(int i = 0; i < points->size(); ++i) {
+		for(unsigned int i = 0; i < points->size(); ++i) {
 			convexHull->push_back((*points)[i]);
 		}
 	
@@ -40,23 +40,19 @@ bool ConvexHullAlgs::GrahamsScan(std::vector<Vector> *convexHull, std::vector<Ve
 	}
 
 	// sort points based on polar angle relative to min
-	Vector temp = Vector(min->x + 1, min->y, min->z, 1.f);
-	Vector ref = temp - *min;
-
 	std::vector<VectorPolar> polars;
 	for(std::vector<Vector>::iterator it = points->begin(); it!=points->end(); ++it) {
-		if(!((*it)==(*min))) {
-			polars.push_back(VectorPolar((*it), ref));
-		}
+		if(!((*it)==(*min))) 
+			polars.push_back(VectorPolar((*it), (*min)));
 	}
 
 	std::sort(polars.begin(), polars.end(), compareVectorPolar);
-
+	
 	convexHull->push_back(*min);
 	convexHull->push_back(polars[0].v);
 	convexHull->push_back(polars[1].v);
 
-	for(int i = 2; i<polars.size(); ++i) {
+	for(unsigned int i = 2; i<polars.size(); ++i) {
 		while(true) {
 			// determine if angle between next-to-top(s), top(s) and pi makes left turn
 			Vector a = convexHull->back() - convexHull->at(convexHull->size()-2); // top - next-to-top = vector from next-to-top to top

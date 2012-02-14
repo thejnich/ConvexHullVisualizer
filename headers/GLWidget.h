@@ -51,6 +51,7 @@ private:
 	bool showConvexHull;
 	int findPoint(Vector v);
 	void updateConvexHull();
+	void initPoints();
 };
 
 #endif  /* _GLWIDGET_H */
