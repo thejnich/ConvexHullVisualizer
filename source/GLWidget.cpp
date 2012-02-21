@@ -14,9 +14,9 @@ GLWidget::GLWidget(QWidget *parent) : QGLWidget(parent)
 
 GLWidget::~GLWidget()
 {
-	timer = NULL;
-	points = NULL;
-	convexHull = NULL;
+ 	delete timer;
+	delete points;
+	delete convexHull;
 }
 
 void GLWidget::initializeGL()
