@@ -194,7 +194,7 @@ int GLWidget::findPoint(Vector v)
 
 void GLWidget::updateConvexHull()
 {
-	if(points == NULL)
+	if(NULL == points)
 		return;
 
 	if(!ConvexHullAlgs::GrahamsScan(convexHull, points))
