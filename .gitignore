@@ -4,3 +4,4 @@ moc*
 *.app
 Makefile
 *.swp
+tags
