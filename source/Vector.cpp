@@ -34,18 +34,22 @@ Vector Vector::operator+ (Vector v)
 {
    return Vector (x+v.x, y+v.y, z+v.z, w+v.w);
 }
+
 Vector Vector::operator- (Vector v)
 {
    return Vector  (x-v.x, y-v.y, z-v.z, w-v.w);
 }
+
 Vector Vector::operator* (float s)
 {
    return Vector (x*s, y*s, z*s, w*s);
 }
+
 Vector Vector::operator/ (float s)
 {
    return Vector (x/s, y/s, z/s, w/s);
 }
+
 bool Vector::operator== (Vector v)
 {
    return (x == v.x && y==v.y && z==v.z);
