@@ -17,17 +17,17 @@ class Window : public QMainWindow
 {
 
 public:
-	Window(QWidget *parent = NULL);
-	~Window() {}
+   Window(QWidget *parent = NULL);
+   ~Window() {}
 	
 private:
-	QWidget *centralWidget;
-	GLWidget *glWidget;
-	QHBoxLayout *mainLayout;
-	QVBoxLayout *controlLayout;
+   QWidget *centralWidget;
+   GLWidget *glWidget;
+   QHBoxLayout *mainLayout;
+   QVBoxLayout *controlLayout;
 
-	QPushButton *clearPointsButton;
-	QPushButton *toggleConvexHullButton;
+   QPushButton *clearPointsButton;
+   QPushButton *toggleConvexHullButton;
 };
 
 #endif /* _WINDOW_H */

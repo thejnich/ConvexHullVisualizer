@@ -26,32 +26,32 @@ class GLWidget : public QGLWidget {
     Q_OBJECT // must include this if you use Qt signals/slots
 
 public:
-    GLWidget(QWidget *parent = NULL);
-	~GLWidget();
-	QSize sizeHint() const;
-	QSize minimumSizeHint() const;
+   GLWidget(QWidget *parent = NULL);
+   ~GLWidget();
+   QSize sizeHint() const;
+   QSize minimumSizeHint() const;
 	
 public slots:
-	void clearPoints();
-	void toggleConvexHull(bool);
+   void clearPoints();
+   void toggleConvexHull(bool);
 
 signals:
 
 protected:
-    void initializeGL();
-    void resizeGL(int w, int h);
-    void paintGL();
-    void mousePressEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
+   void initializeGL();
+   void resizeGL(int w, int h);
+   void paintGL();
+   void mousePressEvent(QMouseEvent *event);
+   void mouseMoveEvent(QMouseEvent *event);
 	
 private:
-	QTimer *timer;
-	vector<Vector> *points;
-	vector<Vector> *convexHull;
-	bool showConvexHull;
-	int findPoint(Vector v);
-	void updateConvexHull();
-	void initPoints();
+   QTimer *timer;
+   vector<Vector> *points;
+   vector<Vector> *convexHull;
+   bool showConvexHull;
+   int findPoint(Vector v);
+   void updateConvexHull();
+   void initPoints();
 };
 
 #endif  /* _GLWIDGET_H */

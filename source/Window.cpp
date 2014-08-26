@@ -12,33 +12,33 @@
 Window::Window(QWidget *parent) : QMainWindow(parent)
 {
 
-	//init 
-	setWindowTitle(tr("Convex Hull Visualizer"));
-	
-	glWidget = new GLWidget;
+   //init 
+   setWindowTitle(tr("Convex Hull Visualizer"));
 
-	centralWidget = new QWidget;
-	setCentralWidget(centralWidget);
-	
-	mainLayout = new QHBoxLayout;
-	controlLayout = new QVBoxLayout;
+   glWidget = new GLWidget;
 
-	// set up buttons
-	clearPointsButton = new QPushButton("Clear Points");
-	connect(clearPointsButton, SIGNAL(clicked()), glWidget, SLOT(clearPoints()));
+   centralWidget = new QWidget;
+   setCentralWidget(centralWidget);
 
-	toggleConvexHullButton = new QPushButton("Convex Hull");
-	toggleConvexHullButton->setCheckable(true);
-	toggleConvexHullButton->setDown(true);
-	connect(toggleConvexHullButton, SIGNAL(toggled(bool)), glWidget, SLOT(toggleConvexHull(bool)));
+   mainLayout = new QHBoxLayout;
+   controlLayout = new QVBoxLayout;
 
-	// add controls to controlLayout
-	controlLayout->addWidget(toggleConvexHullButton);
-	controlLayout->addWidget(clearPointsButton);
+   // set up buttons
+   clearPointsButton = new QPushButton("Clear Points");
+   connect(clearPointsButton, SIGNAL(clicked()), glWidget, SLOT(clearPoints()));
 
-	// add main widgets and layouts
-	mainLayout->addWidget(glWidget);
-	mainLayout->addLayout(controlLayout);
-	centralWidget->setLayout(mainLayout);
+   toggleConvexHullButton = new QPushButton("Convex Hull");
+   toggleConvexHullButton->setCheckable(true);
+   toggleConvexHullButton->setDown(true);
+   connect(toggleConvexHullButton, SIGNAL(toggled(bool)), glWidget, SLOT(toggleConvexHull(bool)));
+
+   // add controls to controlLayout
+   controlLayout->addWidget(toggleConvexHullButton);
+   controlLayout->addWidget(clearPointsButton);
+
+   // add main widgets and layouts
+   mainLayout->addWidget(glWidget);
+   mainLayout->addLayout(controlLayout);
+   centralWidget->setLayout(mainLayout);
 }
 
