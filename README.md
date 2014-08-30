@@ -1,3 +1,5 @@
+[![Version](http://img.shields.io/badge/version-prototype-yellow.svg)](#)
+
 # Convex Hull Visualizer
 
 Simple program to visualize the convex hull of a set of 2d points.
