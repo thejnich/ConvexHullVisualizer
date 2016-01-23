@@ -12,7 +12,6 @@
 
 #include "Vector.h"
 
-// default constructor
 Vector::Vector()
 {
    x=y=z=w=0.0f;
@@ -55,7 +54,7 @@ bool Vector::operator== (Vector v)
    return (x == v.x && y==v.y && z==v.z);
 }
 
-// returns a vector perpendicular to both v1 and v2
+// Returns a vector perpendicular to both v1 and v2.
 Vector Vector::crossProduct (Vector v1, Vector v2)
 {
    Vector result;
@@ -65,19 +64,19 @@ Vector Vector::crossProduct (Vector v1, Vector v2)
    return result;
 }
 
-// length of a vector
+// Length of a vector.
 float Vector::norm()
 {
    return sqrt(x*x + y*y + z*z);
 }
 
-// returns the angle in radians between two vectors, v1 and v2 
+// Returns the angle in radians between two vectors, v1 and v2.
 float Vector::getAngle (Vector v1, Vector v2)
 {
    return acos((v1.x*v2.x + v1.y*v2.y + v1.z*v2.z)/(v1.norm()*v2.norm()));
 }
 
-// returns distance between two points, represented by Vector objects
+// Returns distance between two points, represented by Vector objects.
 float Vector::getDistance (Vector v1, Vector v2)
 {
    return sqrt(((v2.x-v1.x)*(v2.x-v1.x))+((v2.y-v1.y)*(v2.y-v1.y))+((v2.z-v1.z)*(v2.z-v1.z)));

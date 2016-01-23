@@ -26,29 +26,31 @@ void GLWidget::initializeGL()
    glEnable(GL_DEPTH_TEST);
 }
 
-// from Steven Longay, keeps the aspect ratio when resizing window
+// From Steven Longay, keeps the aspect ratio when resizing window.
 void GLWidget::resizeGL(int w, int h)
 {
-   // Switch to the propper matrix
+   // Switch to the propper matrix.
    glMatrixMode(GL_PROJECTION);
    glLoadIdentity();
 
-   // Set drawing to take up the entire window
+   // Set drawing to take up the entire window.
    glViewport(0, 0, w, h);
 
    float ratio;
-   if (w > h) // In this case the w/h ratio is > 1
+   if (w > h) 
    {
+      // In this case the w/h ratio is > 1.
       ratio = (float)w/(float)h;
       glOrtho(-ratio, ratio, -1, 1, -2, 2);
    }
-   else        // In this case the h/w ratio is > 1
+   else        
    {
+      // In this case the h/w ratio is > 1.
       ratio = (float)h/(float)w;
       glOrtho(-1, 1, -ratio, ratio, -2, 2);
    }
 
-   //Switch back to modelview matrix
+   // Switch back to modelview matrix.
    glMatrixMode(GL_MODELVIEW);
 }
 
@@ -72,7 +74,7 @@ void GLWidget::paintGL()
    glLoadIdentity();
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-   // place camera
+   // Place the camera.
    gluLookAt(
          0, 0, 1,    // camera position
          0, 0, 0,    // look-at
@@ -85,6 +87,7 @@ void GLWidget::paintGL()
    {
       glVertex3f(it->x, it->y, it->z);
    }
+
    glEnd();
 
    if (showConvexHull)
@@ -113,7 +116,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 {
    if (event->type() == QEvent::MouseButtonPress)
    {
-      // create vector based on click position, need to adjust to correct coordinates
+      // Create vector based on click position, need to adjust to correct coordinates.
       float xnew = ((float)event->x() / (float)WIDGET_WIDTH) *2 -1;
       float ynew = ((float)event->y() / (float)WIDGET_HEIGHT) *(-2) +1;
       float znew = 0.0f;
@@ -146,21 +149,29 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
    if(event->type() == QEvent::MouseMove)
    {
-      // create vector based on click position, need to adjust to correct coordinates
+      // Create vector based on click position, need to adjust to correct coordinates.
       float xnew = ((float)event->x() / (float)WIDGET_WIDTH) *2 -1;
       float ynew = ((float)event->y() / (float)WIDGET_HEIGHT) *(-2) +1;
       float znew = 0.0f;
       float wnew = 1.0f;
 
       if (xnew < -1.0)
+      {
          xnew = -1.0f;
+      }
       else if (xnew > 1.0)
+      {
          xnew = 1.0f;
+      }
 
       if (ynew < -1.0)
+      {
          ynew = -1.0f;
+      }
       else if (ynew > 1.0)
+      {
          ynew = 1.0f;
+      }
 
       Vector v = Vector(xnew,ynew,znew,wnew);
       int closestIndex = findPoint(v);
@@ -170,6 +181,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
          (*points)[closestIndex].x = xnew;
          (*points)[closestIndex].y = ynew;
       }
+
       updateConvexHull();
    }
 }
@@ -181,11 +193,12 @@ int GLWidget::findPoint(Vector v)
       return -1;
    }
 
-   // Find the point closest
+   // Find the point closest.
    int index = 0;
    float smallestDistance = Vector::getDistance(v, (*points)[index]);
    float dist;
-   // loop through all points, tracking which is closest
+
+   // Loop through all points, tracking which is closest.
    for (uint i = 1; i < points->size(); i++)
    {
       dist = Vector::getDistance(v, (*points)[i]);
@@ -196,9 +209,11 @@ int GLWidget::findPoint(Vector v)
       }
    }
 
-   // Threshold the distance so we dont get anything too far out
+   // Threshold the distance so we dont get anything too far out.
    if (smallestDistance > MAX_DIST)
+   {
       index = -1;
+   }
 
    return index;
 }       
@@ -206,10 +221,14 @@ int GLWidget::findPoint(Vector v)
 void GLWidget::updateConvexHull()
 {
    if (NULL == points)
+   {
       return;
+   }
 
    if (!ConvexHullAlgs::GrahamsScan(convexHull, points))
+   {
       printf("error computing convex hull\n");
+   }
 }
 
 void GLWidget::clearPoints()
